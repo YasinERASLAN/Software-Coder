@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yasin Eraslan | Profesyonel Hizmetler</title>
+  <style>
+    :root {
+      --primary: #004a8f;
+      --secondary: #007bff;
+      --gray: #e5e7eb;
+      --text: #1f2937;
+      --bg: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 8%;
+      background: var(--primary);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    header img {
+      height: 50px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--secondary);
+    }
+
+    .hero {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      padding: 5rem 8%;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero button {
+      background: white;
+      color: var(--primary);
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .hero button:hover {
+      background: var(--secondary);
+      color: white;
+    }
+
+    section {
+      padding: 4rem 8%;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--gray);
+      padding: 2rem;
+      border-radius: 12px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .service-card h3 {
+      color: var(--primary);
+      margin-bottom: 0.8rem;
+    }
+
+    .about {
+      background: var(--gray);
+      border-radius: 12px;
+      padding: 3rem;
+      text-align: center;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+      nav {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo71.png" alt="Logo" />
+    <nav>
+      <a href="#hizmetler">Hizmetler</a>
+      <a href="#hakkinda">Hakkında</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Profesyonel Web, Yazılım ve Tasarım Hizmetleri</h1>
+    <p>Yasin Eraslan — Dijital dünyada markanızı güçlendirin, profesyonel çözümlerle öne çıkın.</p>
+    <button onclick="scrollToSection('hizmetler')">Hizmetleri Gör</button>
+  </section>
+
+  <section id="hizmetler">
+    <h2 style="text-align:center; margin-bottom:2rem;">Hizmetlerimiz</h2>
+    <div class="services">
+      <div class="service-card">
+        <h3>Web Tasarım & Yazılım</h3>
+        <p>Kurumsal ve modern web siteleri, SEO uyumlu yapılarla profesyonel görünüm kazanın.</p>
+      </div>
+      <div class="service-card">
+        <h3>SEO ve Dijital Pazarlama</h3>
+        <p>Arama motorlarında görünürlüğünüzü artırın, hedef kitlenize ulaşın.</p>
+      </div>
+      <div class="service-card">
+        <h3>Logo & Grafik Tasarım</h3>
+        <p>Markanızı temsil eden özgün logolar ve tasarımlar.</p>
+      </div>
+      <div class="service-card">
+        <h3>Yazılım Çözümleri</h3>
+        <p>İşinize özel, verimliliği artıran yazılım sistemleri geliştirin.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="hakkinda">
+    <div class="about">
+      <h2>Hakkımda</h2>
+      <p style="margin-top:1rem;">Ben Yasin Eraslan, mekatronik sistem tasarımı ve yazılım geliştirme alanında uzmanım. Dijital dünyada yenilikçi çözümler sunarak işletmelere değer katıyorum.</p>
+    </div>
+  </section>
+
+  <section id="iletisim" class="contact">
+    <h2>İletişim</h2>
+    <p style="margin:1rem 0;">Bize ulaşın: <b>xxx xxx xx xx</b></p>
+    <p><a href="mailto:info@yasineraslan.com" style="color:var(--secondary); text-decoration:none;">info@tercihinnedir.com</a></p>
+  </section>
+
+  <footer>
+    © 2025 Yasin Eraslan | www.yasineraslan.com
+  </footer>
+
+  <script>
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

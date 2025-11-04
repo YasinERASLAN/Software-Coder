@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Profesyonel Hizmetler</title>
+<meta name="description" content="Yasin Eraslan - Web & Yazılım, Grafik Tasarım, Dijital Pazarlama ve Endüstriyel Tasarım hizmetleri.">
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --card:#ffffff;
+    --primary:#0b5f8a;
+    --accent:#18a999;
+    --muted:#6b7280;
+    --glass: rgba(255,255,255,0.6);
+    --radius:14px;
+    --shadow: 0 6px 18px rgba(12,24,40,0.08);
+    --glass-shadow: 0 8px 30px rgba(12,24,40,0.06);
+    --max-width:1100px;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background: linear-gradient(180deg,var(--bg),#eef3f8);
+    color:#0f1724;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+    padding:32px 20px;
+    display:flex;
+    justify-content:center;
+  }
+
+  .page{
+    width:100%;
+    max-width:var(--max-width);
+  }
+
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:28px;
+  }
+
+  .brand{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .brand img{
+    width:100px;
+    height:100px;
+    object-fit:contain;
+    border-radius:12px;
+
+    padding:6px;
+    box-shadow:var(--shadow);
+  }
+  .brand h1{
+    margin:0;
+    font-size:18px;
+    letter-spacing:0.2px;
+  }
+  .brand p{margin:0;font-size:13px;color:var(--muted)}
+
+  nav{display:flex;gap:12px;align-items:center}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 14px;
+    border-radius:10px;
+    background:transparent;
+    border:1px solid transparent;
+    font-weight:600;
+    cursor:pointer;
+  }
+  .btn-ghost{color:var(--primary); background:transparent; border:1px solid rgba(11,95,138,0.12)}
+  .btn-primary{background:linear-gradient(90deg,var(--primary),#107ab0); color:white; box-shadow:var(--glass-shadow)}
+
+  /* Hero */
+  .hero{
+    background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.45));
+    border-radius:var(--radius);
+    padding:28px;
+    box-shadow:var(--glass-shadow);
+    display:grid;
+    grid-template-columns:1fr 380px;
+    gap:24px;
+    align-items:center;
+  }
+  .hero-left h2{margin:0 0 8px 0;font-size:28px}
+  .hero-left p{margin:0 0 18px;color:var(--muted)}
+  .kpis{display:flex;gap:12px;margin-top:6px}
+  .kpi{background:var(--card);padding:10px 12px;border-radius:10px;box-shadow:var(--shadow);min-width:110px}
+  .kpi strong{display:block;font-size:16px}
+  .actions{margin-top:18px;display:flex;gap:10px}
+
+  /* Services */
+  .section{margin-top:26px}
+  .section h3{margin:0 0 12px 0}
+  .services{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  .service{
+    background:linear-gradient(180deg,var(--card),#fbfdff);
+    border-radius:12px;padding:14px;
+    box-shadow:var(--shadow);
+    transition:transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+  }
+  .service:hover{transform:translateY(-6px); box-shadow: 0 12px 30px rgba(12,24,40,0.12)}
+  .service h4{margin:0 0 6px 0}
+  .service p{margin:0;color:var(--muted);font-size:14px}
+
+  .service .tag{
+    position:absolute;right:12px;top:12px;
+    background:linear-gradient(90deg,var(--accent),var(--primary));
+    color:white;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;
+    box-shadow:0 6px 18px rgba(11,95,138,0.12)
+  }
+
+  /* Filters row */
+  .filters{display:flex;gap:8px;margin-bottom:10px}
+  .chip{padding:8px 12px;border-radius:999px;background:transparent;border:1px solid rgba(15,23,36,0.06);cursor:pointer}
+  .chip.active{background:linear-gradient(90deg,var(--primary),#107ab0);color:white;border:none;box-shadow:var(--glass-shadow)}
+
+  /* About + Contact */
+  .two-col{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
+  .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)}
+  form label{display:block;font-size:13px;margin-bottom:6px}
+  form input, form textarea{
+    width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef6;font-size:14px;outline:none;
+    background:linear-gradient(180deg,#fff,#fbfdff);
+  }
+  form textarea{min-height:110px;resize:vertical}
+  .muted{color:var(--muted);font-size:13px}
+
+  footer{margin-top:22px;text-align:center;color:var(--muted);font-size:13px}
+
+  /* Modal */
+  .modal-backdrop{
+    position:fixed;inset:0;background:rgba(4,12,24,0.48);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .18s;
+  }
+  .modal{
+    background:linear-gradient(180deg,#fff,#fbfeff);border-radius:14px;padding:20px;max-width:720px;width:92%;box-shadow:0 18px 40px rgba(12,24,40,0.28);
+    transform:translateY(12px);transition:transform .22s;
+  }
+  .modal-backdrop.show{opacity:1;pointer-events:auto}
+  .modal-backdrop.show .modal{transform:none}
+
+  /* Responsive */
+  @media (max-width:980px){
+    .hero{grid-template-columns:1fr; padding:20px}
+    .services{grid-template-columns:repeat(2,1fr)}
+    .two-col{grid-template-columns:1fr}
+    .brand img{width:48px;height:48px}
+  }
+  @media (max-width:520px){
+    .services{grid-template-columns:1fr}
+    header{flex-direction:column;align-items:flex-start;gap:12px}
+    nav{width:100%;display:flex;justify-content:space-between}
+  }
+
+  /* small utility */
+  .hidden{display:none!important}
+  a.nolink{color:inherit;text-decoration:none}
+  .muted-2{color:#9aa3b2;font-size:13px}
+  .center{display:flex;align-items:center;justify-content:center}
+</style>
+</head>
+<body>
+  <div class="page" id="page">
+    <header>
+      <div class="brand">
+        <img id="logo" src="logo71.png" alt="Logo">
+        <div>
+          <h1>Yasin Eraslan</h1>
+          <p>Web & Yazılım · Tasarım · Dijital Pazarlama</p>
+        </div>
+      </div>
+
+      <nav>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn btn-ghost" data-scroll="#services">Hizmetler</button>
+          <button class="btn btn-ghost" data-scroll="#contact">İletişim</button>
+        </div>
+        <div>
+          <button class="btn btn-primary" id="startContact">Teklif Al</button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" role="region" aria-label="Tanıtım">
+      <div class="hero-left">
+        <h2>Profesyonel, Şık ve Sonuç Odaklı Dijital Hizmetler</h2>
+        <p>Web geliştirme, grafik ve endüstriyel tasarım, sosyal medya yönetimi ve özel yazılım çözümlerinde uzman desteği.</p>
+        <div class="kpis">
+          <div class="kpi">
+            <strong>+120</strong>
+            <span class="muted">Tamamlanan proje</span>
+          </div>
+          <div class="kpi">
+            <strong>%98</strong>
+            <span class="muted">Memnuniyet</span>
+          </div>
+          <div class="kpi">
+            <strong>7+</strong>
+            <span class="muted">Uzmanlık alanı</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" id="discover">Hizmetleri Keşfet</button>
+          <button class="btn btn-ghost" id="seeCase">Örnek İşler</button>
+        </div>
+      </div>
+
+      <aside class="card hero-right" style="display:flex;flex-direction:column;gap:12px;align-items:stretch;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <div class="muted-2">Hızlı Danışmanlık</div>
+            <div style="font-weight:700">Fiyat & Yol Haritası</div>
+          </div>
+          <div class="center" style="gap:8px">
+            <div style="text-align:right">
+              <div style="font-size:20px;font-weight:800">₺</div>
+              <div class="muted">Başlangıç paketi</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="muted">Hızlı bir ön değerlendirme ile fiyat aralığı ve teslim planı önerisi almak için butona tıklayın.</div>
+        <button class="btn btn-primary" id="quickQuote">Hızlı Teklif Al</button>
+      </aside>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services" aria-labelledby="services-title">
+      <h3 id="services-title">Hizmetlerimiz</h3>
+
+      <div class="filters" aria-hidden="false" role="region" aria-label="Filtreler" id="filterRow">
+        <button class="chip active" data-filter="all">Tümü</button>
+        <button class="chip" data-filter="web">Web & Yazılım</button>
+        <button class="chip" data-filter="design">Tasarım</button>
+        <button class="chip" data-filter="marketing">Dijital Pazarlama</button>
+      </div>
+
+      <div class="services" id="servicesList">
+        <article class="service" data-type="web" tabindex="0" aria-label="Web geliştirme">
+          <div class="tag">Web</div>
+          <h4>Kurumsal Web Siteleri</h4>
+          <p>Hızlı, SEO uyumlu, duyarlı (responsive) web çözümleri. Yönetim paneli opsiyonları.</p>
+          <small class="muted">Teknolojiler: HTML, CSS, JS, Node/React (opsiyonel)</small>
+        </article>
+
+        <article class="service" data-type="web" tabindex="0" aria-label="Özel yazılım">
+          <div class="tag">Yazılım</div>
+          <h4>Özel Yazılım & Entegrasyon</h4>
+          <p>İş akışınıza özel yazılım çözümleri, 3. parti API entegrasyonları ve otomasyon.</p>
+          <small class="muted">ERP, CRM, Otomasyon</small>
+        </article>
+
+        <article class="service" data-type="design" tabindex="0" aria-label="Logo ve marka">
+          <div class="tag">Tasarım</div>
+          <h4>Logo & Marka Tasarımı</h4>
+          <p>Tutarlı kurumsal kimlik, logo, kartvizit ve marka kılavuzu oluşturma.</p>
+          <small class="muted">Kurumsal kimlik, baskı işleri</small>
+        </article>
+
+        <article class="service" data-type="design" tabindex="0" aria-label="Endüstriyel tasarım">
+          <div class="tag">Endüstri</div>
+          <h4>Ürün & Endüstriyel Tasarım</h4>
+          <p>Prototip, 3D modelleme, üretim çizimleri ve teknik tasarım desteği.</p>
+          <small class="muted">CAD, prototip</small>
+        </article>
+
+        <article class="service" data-type="marketing" tabindex="0" aria-label="Sosyal medya">
+          <div class="tag">Pazarlama</div>
+          <h4>Sosyal Medya & İçerik</h4>
+          <p>Strateji, içerik üretimi, reklam yönetimi ve performans raporlaması.</p>
+          <small class="muted">Instagram, LinkedIn, Facebook</small>
+        </article>
+
+        <article class="service" data-type="marketing" tabindex="0" aria-label="SEO hizmetleri">
+          <div class="tag">SEO</div>
+          <h4>SEO & Performans</h4>
+          <p>On-page / Off-page SEO, site hızı optimizasyonu ve içerik danışmanlığı.</p>
+          <small class="muted">Analiz, rapor</small>
+        </article>
+      </div>
+    </section>
+
+    <!-- ABOUT + CONTACT -->
+    <section class="two-col">
+      <div>
+        <div class="card">
+          <h3>Hakkımda</h3>
+          <p class="muted">Ben Yasin Eraslan. Mekatronik sistem tasarımcısı, yazılım ve dijital çözümler üreten bir tasarımcıyım. Proje odaklı yaklaşım, net teslimatlar ve uzun vadeli destek sunuyorum.</p>
+          <p class="muted">Çalışma alanlarım: Web geliştirme, endüstriyel tasarım, marka kimliği, dijital pazarlama ve özel yazılım çözümleri.</p>
+
+          <div style="margin-top:12px;">
+            <button class="btn btn-ghost" id="downloadCv">CV İndir</button>
+            <button class="btn btn-ghost" id="portfolio">Portfolyo</button>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <div class="card">
+            <h4>Örnek İşler (Hızlı Önizleme)</h4>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+              <div style="width:120px;height:78px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:8px;box-shadow:var(--shadow)"></div>
+              <div style="width:120px;height:78px;background:linear-gradient(135deg,#107ab0,#4cc9b0);border-radius:8px;box-shadow:var(--shadow)"></div>
+              <div style="width:120px;height:78px;background:linear-gradient(135deg,#0d4f6a,#18a999);border-radius:8px;box-shadow:var(--shadow)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card" id="contact">
+          <h3>İletişim & Teklif</h3>
+          <p class="muted">Kısa bir mesajla ihtiyacınızı anlatın — size 1 iş günü içinde dönüş yapılır.</p>
+
+          <form id="contactForm" novalidate>
+            <label for="name">İsim</label>
+            <input id="name" name="name" required placeholder="İsminiz" />
+
+            <label for="email">E-posta</label>
+            <input id="email" name="email" type="email" required placeholder="mail@ornek.com" />
+
+            <label for="service">Hizmet</label>
+            <select id="service" name="service" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef6;margin-bottom:10px">
+              <option value="">Seçiniz</option>
+              <option value="web">Web & Yazılım</option>
+              <option value="design">Tasarım</option>
+              <option value="marketing">Dijital Pazarlama</option>
+            </select>
+
+            <label for="message">Kısa Açıklama</label>
+            <textarea id="message" name="message" placeholder="Projenizin kısa açıklaması..."></textarea>
+
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <button class="btn btn-primary" type="submit">Gönder</button>
+              <button type="button" class="btn btn-ghost" id="clearForm">Temizle</button>
+            </div>
+
+            <div id="formMessage" class="muted" style="margin-top:8px"></div>
+          </form>
+        </div>
+      </aside>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Yasin Eraslan · Tüm hakları saklıdır.
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal" role="document">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3 id="modalTitle">Hizmet Detayı</h3>
+        <button class="btn btn-ghost" id="closeModal">Kapat</button>
+      </div>
+      <div id="modalBody" style="margin-top:12px;color:var(--muted)"></div>
+    </div>
+  </div>
+
+<script>
+/* --- Basit JS etkileşimleri: filtrleme, modal, form validasyon, smooth scroll --- */
+(function(){
+  const services = Array.from(document.querySelectorAll('.service'));
+  const chips = Array.from(document.querySelectorAll('.chip'));
+  const servicesList = document.getElementById('servicesList');
+  const modal = document.getElementById('modal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalBody = document.getElementById('modalBody');
+  const yearEl = document.getElementById('year');
+  const form = document.getElementById('contactForm');
+  const formMessage = document.getElementById('formMessage');
+
+  yearEl.textContent = new Date().getFullYear();
+
+  // Filtering
+  function setFilter(filter){
+    chips.forEach(c => c.classList.toggle('active', c.dataset.filter === filter));
+    services.forEach(s => {
+      const t = s.dataset.type;
+      s.style.display = (filter === 'all' || filter === t) ? '' : 'none';
+    });
+  }
+  chips.forEach(c => c.addEventListener('click', ()=> setFilter(c.dataset.filter)));
+
+  // Open modal with service details
+  function openServiceDetail(el){
+    const title = el.querySelector('h4').innerText;
+    const desc = el.querySelector('p').innerText;
+    const tech = el.querySelector('small') ? el.querySelector('small').innerText : '';
+    modalTitle.innerText = title;
+    modalBody.innerHTML = `<p style="margin:0 0 10px">${desc}</p><p class="muted">${tech}</p><div style="margin-top:12px"><button class="btn btn-primary" id="getQuote">Ücretsiz Keşif</button></div>`;
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden','false');
+
+    // attach handler for quick quote inside modal
+    setTimeout(()=>{
+      const q = document.getElementById('getQuote');
+      if(q) q.addEventListener('click', ()=> {
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden','true');
+        document.getElementById('service').value = el.dataset.type;
+        document.getElementById('name').focus();
+      });
+    },60);
+  }
+
+  services.forEach(s => {
+    s.addEventListener('click', ()=> openServiceDetail(s));
+    s.addEventListener('keypress', (e)=> { if(e.key==='Enter') openServiceDetail(s) });
+  });
+
+  // Modal controls
+  document.getElementById('closeModal').addEventListener('click', ()=> {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden','true');
+  });
+  modal.addEventListener('click', (ev)=> {
+    if(ev.target === modal) {
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden','true');
+    }
+  });
+
+  // Smooth scroll for header buttons
+  document.querySelectorAll('[data-scroll]').forEach(btn=>{
+    btn.addEventListener('click', ()=> {
+      const sel = btn.getAttribute('data-scroll');
+      const el = document.querySelector(sel);
+      if(!el) return;
+      el.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+
+  // Quick actions
+  document.getElementById('discover').addEventListener('click', ()=> {
+    document.querySelector('[data-filter="all"]').click();
+    document.querySelector('[data-scroll="#services"]').click();
+  });
+  document.getElementById('seeCase').addEventListener('click', ()=> {
+    alert('Portfolyo örnekleri için portfolyo bölümüne bakabilirsiniz.');
+  });
+  document.getElementById('startContact').addEventListener('click', ()=> {
+    document.querySelector('[data-scroll="#contact"]').click();
+    document.getElementById('name').focus();
+  });
+  document.getElementById('quickQuote').addEventListener('click', ()=> {
+    document.querySelector('[data-scroll="#contact"]').click();
+    document.getElementById('service').value = 'web';
+  });
+
+  // Minimal form validation + fake submit (since single file has no backend)
+  form.addEventListener('submit', (ev)=>{
+    ev.preventDefault();
+    formMessage.textContent = '';
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const service = form.service.value;
+    const message = form.message.value.trim();
+
+    if(!name){ formMessage.textContent = 'Lütfen isim girin.'; form.name.focus(); return; }
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ formMessage.textContent = 'Geçerli bir e-posta girin.'; form.email.focus(); return; }
+    if(!service){ formMessage.textContent = 'İlgilendiğiniz hizmeti seçin.'; form.service.focus(); return; }
+    if(!message){ formMessage.textContent = 'Kısa bir açıklama girin.'; form.message.focus(); return; }
+
+    // Simulate submission
+    formMessage.textContent = 'Gönderiliyor...';
+    setTimeout(()=>{
+      formMessage.textContent = 'Teşekkürler! En kısa sürede dönüş yapacağım.';
+      form.reset();
+    },900);
+  });
+
+  document.getElementById('clearForm').addEventListener('click', ()=> {
+    form.reset();
+    formMessage.textContent = '';
+  });
+
+  // Small accessibility: trap focus inside modal when open
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && modal.classList.contains('show')){
+      modal.classList.remove('show'); modal.setAttribute('aria-hidden','true');
+    }
+  });
+
+  // Init default filter
+  setFilter('all');
+
+})();
+</script>
+</body>
+</html>
